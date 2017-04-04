@@ -9,6 +9,8 @@ import org.escoladeltreball.libgdxdemo1.iam76654250.player.Player;
 
 import java.util.Random;
 
+import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.CLOUDNAME;
+import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.DARKCLOUDNAME;
 import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.H_HEIGHT;
 import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.H_WIDTH;
 
@@ -22,7 +24,7 @@ public class CloudsController {
 
     private Array<Cloud> clouds = new Array<Cloud>();
 
-    private final float DISTANCE_BETWEEN_CLOUDS = 250f;
+    private final float DISTANCE_BETWEEN_CLOUDS = 200f;
     private float minX, maxX;
 
     private float lastCloudPositionY;
@@ -33,7 +35,7 @@ public class CloudsController {
     public CloudsController(World world) {
         this.world = world;
         minX = H_WIDTH - 150;
-        maxX = H_WIDTH + 100;
+        maxX = H_WIDTH + 150;
         createCloud();
         positionClouds(true);
     }
@@ -42,14 +44,14 @@ public class CloudsController {
 
         // 2 Dark Clouds
         for (int i = 0; i < 2; i++) {
-            clouds.add(new Cloud(world, "DarkCloud.png", "Dark cloud"));
+            clouds.add(new Cloud(world, "DarkCloud.png", DARKCLOUDNAME));
         }
 
         int index = 1;
 
         // 6 Clouds
         for (int i = 0; i < 6; i++) {
-            clouds.add(new Cloud(world, "Cloud" + index + ".png", "Cloud"));
+            clouds.add(new Cloud(world, "Cloud" + index + ".png", CLOUDNAME));
             index++;
 
             if (index == 4) {
@@ -64,7 +66,7 @@ public class CloudsController {
 
     public void positionClouds(boolean firstTimeArranging) {
 
-        while (clouds.get(0).getCloudName().equals("Dark cloud")) {
+        while (clouds.get(0).getCloudName().equals(DARKCLOUDNAME)) {
             clouds.shuffle();
         }
 
@@ -85,10 +87,10 @@ public class CloudsController {
                 float tempX = 0;
 
                 if (controlX == 0) {
-                    tempX = randomBetwennNumbers(maxX - 50, maxX);
+                    tempX = randomBetweenNumbers(maxX - 40, maxX);
                     controlX = 1;
                 } else if (controlX == 1) {
-                    tempX = randomBetwennNumbers(minX + 50, minX);
+                    tempX = randomBetweenNumbers(minX + 40, minX);
                     controlX = 0;
                 }
 
@@ -103,7 +105,7 @@ public class CloudsController {
 
     public void drawClouds(SpriteBatch batch) {
         for (Cloud cloud : clouds) {
-            batch.draw(cloud, cloud.getX() - cloud.getWidth() / 2f , cloud.getY() - cloud.getHeight() / 2f);
+            batch.draw(cloud, cloud.getX() - cloud.getWidth() / 2f, cloud.getY() - cloud.getHeight() / 2f);
         }
     }
 
@@ -132,7 +134,7 @@ public class CloudsController {
         return player;
     }
 
-    private float randomBetwennNumbers(float max, float min) {
+    private float randomBetweenNumbers(float max, float min) {
         return random.nextFloat() * (max - min) + min;
 
     }

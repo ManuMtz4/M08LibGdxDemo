@@ -23,10 +23,13 @@ import org.escoladeltreball.libgdxdemo1.iam76654250.GameMain;
 import org.escoladeltreball.libgdxdemo1.iam76654250.cloud.CloudsController;
 import org.escoladeltreball.libgdxdemo1.iam76654250.player.Player;
 
+import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.CLOUDNAME;
+import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.DARKCLOUDNAME;
 import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.GRAVITY;
 import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.HEIGHT;
 import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.H_HEIGHT;
 import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.H_WIDTH;
+import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.PLAYERNAME;
 import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.PPM;
 import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.WIDTH;
 
@@ -58,6 +61,8 @@ public class Gameplay implements Screen, ContactListener {
     private Player player;
 
     private long puntos;
+
+    private boolean jumpLimit;
 
     public Gameplay(GameMain game) {
         this.game = game;
@@ -140,9 +145,15 @@ public class Gameplay implements Screen, ContactListener {
 
         player.drawPlayer(batch);
 
-        if (player.getBody().getPosition().x * PPM > (WIDTH + (player.getWidth() / 2)) || player.getBody().getPosition().x * PPM < (0 - (player.getWidth()
-                / 2)) ||
-                H_HEIGHT < player.getY() - (player.getHeight() / 2) - mainCamera.position.y) {
+        // Si el player se sale de la pantalla muere!
+
+        boolean playerFueraR = player.getBody().getPosition().x * PPM > (WIDTH + (player.getWidth() / 2));
+        boolean playerFueraL = player.getBody().getPosition().x * PPM < (0 - (player.getWidth() / 2));
+
+        boolean playerFueraYPlus = player.getY() - (player.getHeight() / 2) - mainCamera.position.y > H_HEIGHT;
+        boolean playerFueraYMinus = player.getY() + (player.getHeight() / 2) - mainCamera.position.y < -H_HEIGHT;
+
+        if (playerFueraL || playerFueraR || playerFueraYPlus || playerFueraYMinus) {
             muere();
         }
 
@@ -181,8 +192,8 @@ public class Gameplay implements Screen, ContactListener {
                     player.getBody().getWorldCenter(), true);
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            // Solo hará un salto por click
+        // Solo hará un salto hasta que vuelva a caer a una nube
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && jumpLimit) {
             player.getBody().applyLinearImpulse(new Vector2(0, 12f),
                     player.getBody().getWorldCenter(), true);
         }
@@ -197,7 +208,7 @@ public class Gameplay implements Screen, ContactListener {
     }
 
     private void moveCamera() {
-        mainCamera.position.y -= 2;
+        mainCamera.position.y -= 4;
     }
 
     /**
@@ -247,7 +258,7 @@ public class Gameplay implements Screen, ContactListener {
     public void beginContact(Contact contact) {
         Fixture firstBody, secondBody;
 
-        if (contact.getFixtureA().getUserData().equals("Player")) {
+        if (contact.getFixtureA().getUserData().equals(PLAYERNAME)) {
             // Setting the fixture A the player is the first body
             firstBody = contact.getFixtureA();
             secondBody = contact.getFixtureB();
@@ -256,10 +267,15 @@ public class Gameplay implements Screen, ContactListener {
             secondBody = contact.getFixtureA();
         }
 
-        if (secondBody.getUserData().equals("Dark cloud")) {
+        if (secondBody.getUserData().equals(CLOUDNAME)) {
+            //impide saltar
+            jumpLimit = true;
+        }
+
+        if (secondBody.getUserData().equals(DARKCLOUDNAME)) {
             //System.out.println("ESTAS MUERTO");
             muere();
-        } else if (secondBody.getUserData().equals("Cloud") && !secondBody.equals(lastBody)) {
+        } else if (secondBody.getUserData().equals(CLOUDNAME) && !secondBody.equals(lastBody)) {
             lastBody = secondBody;
             if (!firstTime) {
                 puntos += 1;
@@ -288,7 +304,8 @@ public class Gameplay implements Screen, ContactListener {
      */
     @Override
     public void endContact(Contact contact) {
-
+        // vuelve a dejar saltar
+        jumpLimit = false;
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.PLAYERNAME;
 import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.PPM;
 
 /**
@@ -48,7 +49,7 @@ public class Player extends Sprite {
         fixtureDef.friction = 0.2f;
         //fixtureDef.restitution = 0.05f;
         Fixture fixture = body.createFixture(fixtureDef);
-        fixture.setUserData("Player");
+        fixture.setUserData(PLAYERNAME);
 
         body.setFixedRotation(true);
         shape.dispose();

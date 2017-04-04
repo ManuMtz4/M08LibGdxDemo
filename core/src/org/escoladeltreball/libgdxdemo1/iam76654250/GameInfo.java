@@ -14,4 +14,9 @@ public class GameInfo {
     public static final float PPM = 100;
 
     public static final float GRAVITY = -9.8f;
+
+    public static final String PLAYERNAME = "Player";
+    public static final String CLOUDNAME = "Cloud";
+    public static final String DARKCLOUDNAME = "Dark Cloud";
+
 }
