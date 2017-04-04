@@ -18,7 +18,7 @@ import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.H_WIDTH;
 import static org.escoladeltreball.libgdxdemo1.iam76654250.GameMain.bestPuntos;
 
 /**
- * Created by iam76654250 on 3/30/17.
+ * Created by Manuel Martinez.
  */
 
 public class Muerte implements Screen {

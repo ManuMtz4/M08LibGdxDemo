@@ -31,7 +31,7 @@ import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.PPM;
 import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.WIDTH;
 
 /**
- * Created by iam76654250 on 3/23/17.
+ * Created by Manuel Martinez.
  */
 
 public class Gameplay implements Screen, ContactListener {
@@ -140,8 +140,9 @@ public class Gameplay implements Screen, ContactListener {
 
         player.drawPlayer(batch);
 
-        if (player.getBody().getPosition().x*PPM > WIDTH || player.getBody().getPosition().x*PPM < 0 ||
-                H_HEIGHT < player.getY()-mainCamera.position.y) {
+        if (player.getBody().getPosition().x * PPM > (WIDTH + (player.getWidth() / 2)) || player.getBody().getPosition().x * PPM < (0 - (player.getWidth()
+                / 2)) ||
+                H_HEIGHT < player.getY() - (player.getHeight() / 2) - mainCamera.position.y) {
             muere();
         }
 
@@ -196,7 +197,7 @@ public class Gameplay implements Screen, ContactListener {
     }
 
     private void moveCamera() {
-        mainCamera.position.y -= 1;
+        mainCamera.position.y -= 2;
     }
 
     /**

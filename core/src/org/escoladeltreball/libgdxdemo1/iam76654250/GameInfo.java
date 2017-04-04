@@ -1,7 +1,7 @@
 package org.escoladeltreball.libgdxdemo1.iam76654250;
 
 /**
- * Created by iam76654250 on 3/13/17.
+ * Created by Manuel Martinez.
  */
 
 public class GameInfo {

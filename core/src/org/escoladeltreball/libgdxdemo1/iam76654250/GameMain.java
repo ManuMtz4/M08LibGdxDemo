@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.escoladeltreball.libgdxdemo1.iam76654250.scenes.Gameplay;
 import org.escoladeltreball.libgdxdemo1.iam76654250.scenes.MainMenu;
 
+/**
+ * Created by Manuel Martinez.
+ */
 
 public class GameMain extends Game {
 

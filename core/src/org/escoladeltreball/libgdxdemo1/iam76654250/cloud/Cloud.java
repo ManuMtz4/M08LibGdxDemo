@@ -10,10 +10,9 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.PPM;
-import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.WIDTH;
 
 /**
- * Created by iam76654250 on 3/16/17.
+ * Created by Manuel Martinez.
  */
 
 public class Cloud extends Sprite {

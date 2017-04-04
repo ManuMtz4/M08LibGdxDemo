@@ -1,6 +1,5 @@
 package org.escoladeltreball.libgdxdemo1.iam76654250.cloud;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.physics.box2d.World;
@@ -14,7 +13,7 @@ import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.H_HEIGHT;
 import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.H_WIDTH;
 
 /**
- * Created by iam76654250 on 3/27/17.
+ * Created by Manuel Martinez.
  */
 
 public class CloudsController {

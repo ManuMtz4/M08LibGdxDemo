@@ -13,7 +13,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.PPM;
 
 /**
- * Created by iam76654250 on 3/13/17.
+ * Created by Manuel Martinez.
  */
 
 public class Player extends Sprite {

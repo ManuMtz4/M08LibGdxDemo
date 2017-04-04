@@ -6,7 +6,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -28,7 +27,7 @@ import static org.escoladeltreball.libgdxdemo1.iam76654250.GameInfo.PPM;
 
 
 /**
- * Created by iam76654250 on 3/13/17.
+ * Created by Manuel Martinez.
  */
 
 public class MainMenu implements Screen, ContactListener {
