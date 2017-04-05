@@ -208,7 +208,7 @@ public class Gameplay implements Screen, ContactListener {
     }
 
     private void moveCamera() {
-        mainCamera.position.y -= 4;
+        mainCamera.position.y -= 3;
     }
 
     /**
